@@ -1,0 +1,50 @@
+﻿@page "/moviemodels/details"
+@inject Movie.Data.ApplicationDbContext DB
+@using Movie.Components
+@inject NavigationManager NavigationManager
+@using Microsoft.EntityFrameworkCore
+
+<PageTitle>Details</PageTitle>
+
+<h1>Movie Details</h1>
+
+<div>
+    <hr />
+    @if (moviemodel is null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else {
+        <dl class="row">
+            <dt class="col-sm-2">Title</dt>
+            <dd class="col-sm-10">@moviemodel.Title</dd>
+            <dt class="col-sm-2">Description</dt>
+            <dd class="col-sm-10">@moviemodel.Description</dd>
+            <dt class="col-sm-2">RelaseDate</dt>
+            <dd class="col-sm-10">@moviemodel.RelaseDate</dd>
+            <dt class="col-sm-2">Rate</dt>
+            <dd class="col-sm-10">@moviemodel.Rate</dd>
+        </dl>
+        <div>
+            <a href="@($"/moviemodels/edit?id={moviemodel.Id}")">Edit</a> |
+            <a href="@($"/moviemodels")">Back to List</a>
+        </div>
+    }
+</div>
+
+@code {
+    MovieModel? moviemodel;
+
+    [SupplyParameterFromQuery]
+    public int Id { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        moviemodel = await DB.MovieModel.FirstOrDefaultAsync(m => m.Id == Id);
+
+        if (moviemodel is null)
+        {
+            NavigationManager.NavigateTo("notfound");
+        }
+    }
+}

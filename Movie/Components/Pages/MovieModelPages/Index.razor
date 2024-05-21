@@ -1,0 +1,26 @@
+﻿@page "/moviemodels"
+@rendermode InteractiveServer
+@using Microsoft.AspNetCore.Components.QuickGrid
+@inject Movie.Data.ApplicationDbContext DB
+@using Movie.Components
+
+<PageTitle>Index</PageTitle>
+
+<h1>Movie List </h1>
+
+<p>
+    <a href="moviemodels/create">Add new movie</a>
+</p>
+
+<QuickGrid Class="table" Items="DB.MovieModel">
+    <PropertyColumn Property="moviemodel => moviemodel.Title" Sortable="true" InitialSortDirection="SortDirection.Ascending" IsDefaultSortColumn="true" Align="Align.Center" />
+    <PropertyColumn Property="moviemodel => moviemodel.RelaseDate" Format="yyyy-MM-dd" Sortable="true" Align="Align.Center" />
+    <PropertyColumn Property="moviemodel => moviemodel.Rate" Sortable="true" Align="Align.Center" />
+
+    <TemplateColumn Context="moviemodel" Title="Actions" Align="Align.Center">
+        <a href="@($"moviemodels/edit?id={moviemodel.Id}")">Edit</a> |
+        <a href="@($"moviemodels/details?id={moviemodel.Id}")">Details</a> |
+        <a href="@($"moviemodels/delete?id={moviemodel.Id}")">Delete</a>
+    </TemplateColumn>
+</QuickGrid>
+
