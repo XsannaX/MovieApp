@@ -11,3 +11,18 @@
 <AuthorizeView>
     Hello @context.User.Identity?.Name!
 </AuthorizeView>
+
+@* var s = "https://static1.srcdn.com/wordpress/wp-content/uploads/2019/12/c2-e1577445344881.jpg"
+<img src="+s+" alt="Description of the image" width="500" height="500" /> *@
+<img id="dynamicImage" alt="Description of the image" width="500" height="500" />
+
+<script>
+    // Suppose this URL is fetched from your database
+    var s = "https://static1.srcdn.com/wordpress/wp-content/uploads/2019/12/c2-e1577445344881.jpg";
+
+    // Get the image element by its ID
+    var imgElement = document.getElementById("dynamicImage");
+
+    // Set the src attribute dynamically
+    imgElement.src = s;
+</script>
