@@ -1,8 +1,9 @@
 ﻿@page "/moviemodels"
+@rendermode InteractiveServer
 @using Microsoft.AspNetCore.Components.QuickGrid
 @inject Movie.Data.ApplicationDbContext DB
 @using Movie.Components
-
+@using Microsoft.AspNetCore.Authorization
 @attribute [Authorize]
 <PageTitle>Index</PageTitle>
 

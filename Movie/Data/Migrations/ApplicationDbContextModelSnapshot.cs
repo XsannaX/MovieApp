@@ -166,6 +166,9 @@ namespace Movie.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Poster")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<float?>("Rate")
                         .HasColumnType("real");
 

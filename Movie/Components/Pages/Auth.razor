@@ -6,23 +6,14 @@
 
 <PageTitle>Auth</PageTitle>
 
-<h1>You are authenticated</h1>
+
 
 <AuthorizeView>
-    Hello @context.User.Identity?.Name!
+    <h1>Hello @context.User.Identity?.Name! You are authenticated</h1>
+    <div> <img src="@s" alt="Description of the image" width="500" height="500" /></div>
+   
 </AuthorizeView>
 
-@* var s = "https://static1.srcdn.com/wordpress/wp-content/uploads/2019/12/c2-e1577445344881.jpg"
-<img src="+s+" alt="Description of the image" width="500" height="500" /> *@
-<img id="dynamicImage" alt="Description of the image" width="500" height="500" />
-
-<script>
-    // Suppose this URL is fetched from your database
-    var s = "https://static1.srcdn.com/wordpress/wp-content/uploads/2019/12/c2-e1577445344881.jpg";
-
-    // Get the image element by its ID
-    var imgElement = document.getElementById("dynamicImage");
-
-    // Set the src attribute dynamically
-    imgElement.src = s;
-</script>
+@code{
+    private string s = "https://i.chzbgr.com/full/9427032832/hB0E644E8/welcome-back";
+}
