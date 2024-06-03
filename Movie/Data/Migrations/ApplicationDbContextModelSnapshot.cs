@@ -166,11 +166,14 @@ namespace Movie.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Poster")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<float?>("Rate")
                         .HasColumnType("real");
 
-                    b.Property<DateTime?>("RelaseDate")
-                        .HasColumnType("datetime2");
+                    b.Property<DateOnly?>("RelaseDate")
+                        .HasColumnType("date");
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");

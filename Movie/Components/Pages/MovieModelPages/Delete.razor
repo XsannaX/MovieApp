@@ -3,7 +3,9 @@
 @using Movie.Components
 @inject NavigationManager NavigationManager
 @using Microsoft.EntityFrameworkCore
+@using Microsoft.AspNetCore.Authorization
 
+@attribute [Authorize]
 <PageTitle>Delete</PageTitle>
 
 <h1>Delete Movie</h1>
@@ -26,11 +28,15 @@
         </dl>
         <dl class="row">
             <dt class="col-sm-2">RelaseDate</dt>
-            <dd class="col-sm-10">@moviemodel.RelaseDate </dd>
+            <dd class="col-sm-10">@moviemodel.RelaseDate</dd>
         </dl>
         <dl class="row">
             <dt class="col-sm-2">Rate</dt>
             <dd class="col-sm-10">@moviemodel.Rate</dd>
+        </dl>
+        <dl class="row">
+            <dt class="col-sm-2">Poster</dt>
+            <dd class="col-sm-10">@moviemodel.Poster</dd>
         </dl>
         <EditForm method="post" Model="moviemodel" OnValidSubmit="DeleteMovieModel" FormName="delete" Enhance>
             <button type="submit" class="btn btn-danger" disabled="@(moviemodel is null)">Delete</button> |
