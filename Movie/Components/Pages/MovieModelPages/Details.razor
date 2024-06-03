@@ -1,4 +1,5 @@
 ﻿@page "/moviemodels/details"
+@rendermode InteractiveServer
 @inject Movie.Data.ApplicationDbContext DB
 @using Movie.Components
 @inject NavigationManager NavigationManager
@@ -26,20 +27,30 @@
             <dd class="col-sm-10">@moviemodel.RelaseDate</dd>
             <dt class="col-sm-2">Rate</dt>
             <dd class="col-sm-10">@moviemodel.Rate</dd>
+            <dt class="col-sm-2">Poster</dt>
+            <dd class="col-sm-10">@moviemodel.Poster</dd>
         </dl>
+        if (moviemodel.Poster.ToString() != "")
+        {
+            var s = moviemodel.Poster.ToString();
+            <img src="@s" alt="Image of a poster" width="500" height="500" />
+        }
+        <h4>Add a New Rating</h4>
+        <p>Current Value: @moviemodel.Rate</p>
+        <input @bind="InputValue" type="number" />
+        <button class="btn btn-primary" @onclick="ClickValue">Add</button>
         <div>
             <a href="@($"/moviemodels/edit?id={moviemodel.Id}")">Edit</a> |
             <a href="@($"/moviemodels")">Back to List</a>
         </div>
     }
 </div>
-
 @code {
     MovieModel? moviemodel;
-
+    private int currentCount = 0;
+    private float? InputValue { get; set; }
     [SupplyParameterFromQuery]
     public int Id { get; set; }
-
     protected override async Task OnInitializedAsync()
     {
         moviemodel = await DB.MovieModel.FirstOrDefaultAsync(m => m.Id == Id);
@@ -49,4 +60,14 @@
             NavigationManager.NavigateTo("notfound");
         }
     }
+ 
+    private async Task ClickValue()
+    {
+        float? currentRating = moviemodel.Rate;
+        float? newRating = (InputValue + currentRating) / 2;
+        moviemodel.Rate=newRating;
+        DB.MovieModel.Update(moviemodel);
+        await DB.SaveChangesAsync();
+    }
+
 }
