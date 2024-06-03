@@ -12,8 +12,8 @@ using Movie.Data;
 namespace Movie.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240521102712_NewMod")]
-    partial class NewMod
+    [Migration("20240521000849_ChangedModel")]
+    partial class ChangedModel
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -169,14 +169,11 @@ namespace Movie.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Poster")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<float?>("Rate")
                         .HasColumnType("real");
 
-                    b.Property<DateOnly?>("RelaseDate")
-                        .HasColumnType("date");
+                    b.Property<DateTime?>("RelaseDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");

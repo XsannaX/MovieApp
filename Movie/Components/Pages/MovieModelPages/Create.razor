@@ -34,11 +34,6 @@
                 <InputNumber id="rate" @bind-Value="MovieModel.Rate" class="form-control" /> 
                 <ValidationMessage For="() => MovieModel.Rate" class="text-danger" /> 
             </div>        
-            <div class="mb-3">
-                <label for="poster" class="form-label">Poster URL:</label> 
-                <InputText id="poster" @bind-Value="MovieModel.Poster" class="form-control" /> 
-                <ValidationMessage For="() => MovieModel.Poster" class="text-danger" /> 
-            </div>        
             <button type="submit" class="btn btn-primary">Add</button>
         </EditForm>
     </div>
